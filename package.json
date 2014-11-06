@@ -1,0 +1,27 @@
+{
+  "name": "effing",
+  "description": "Function functions.",
+  "version": "0.0.1",
+  "author": "Ian Henry <ianthehenry@gmail.com>",
+  "scripts": {
+    "build-browser-min": "mkdir browser; browserify src/index.coffee --extension .coffee --standalone Effing -t coffeeify -t uglifyify -o browser/effing.min.js",
+    "build-browser":     "mkdir browser; browserify src/index.coffee --extension .coffee --standalone Effing -t coffeeify -o browser/effing.js",
+    "build-npm": "coffee -b -c -o lib/ --no-header src/",
+    "build": "npm run build-browser && npm run build-browser-min && npm run build-npm",
+    "prepublish": "npm run build-npm",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "browserify": "^6.2.0",
+    "chai": "^1.9.2",
+    "coffee-script": "^1.8.0",
+    "coffeeify": "^0.7.0",
+    "mocha": "^2.0.1",
+    "uglifyify": "^2.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ianthehenry/effing.git"
+  },
+  "main": "lib/index.js"
+}
