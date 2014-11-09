@@ -6,7 +6,7 @@ Some handy function functions for JavaScript, minus the docs and examples and su
 
 # Functionoids
 
-The following things are coerced into functions by effing.js:
+The following things are coerced into functions by `effing.js`:
 
 - `null` becomes a no-op function
 - `undefined` becomes a no-op function
@@ -16,7 +16,16 @@ The following things are coerced into functions by effing.js:
 
 Anywhere effing.js expects a function argument, it will be happy with a functionoid instead.
 
-# Curried binary operators
+The `[context, ...]` functionoids don't allow `Function`s to be used as contexts. `effing.js` can't read your mind.
+
+# Functionoid conversion
+
+`effing.js` exports a function, usually called `f`, that will convert functionoids into normal functions.
+
+When called with one argument, it follows the rules above. When called with no arguments, it returns a no-op function. When called with more than one argument, it behaves as if it were invoked with the arguments in a list.
+
+So `f(fn, arg)` produces a partially applied function, for example, as if you had called `f([fn, arg])`.
+
 
 In Haskell you can say:
 

@@ -6,7 +6,11 @@ isArray = Array.isArray ? (x) ->
 isFunction = (x) -> typeof x == 'function'
 isString = (x) -> typeof x == 'string'
 
-module.exports = (functionoid) ->
+toFunction = (functionoid) ->
+  if arguments.length > 1
+    [args...] = arguments
+    return toFunction(args)
+
   if !functionoid?
     return noop
   if isFunction functionoid
@@ -29,3 +33,5 @@ module.exports = (functionoid) ->
     throw new Error "The [target, method, args...] functionoid requires a string or a function as the method"
 
   return -> fn.call(target, args..., arguments...)
+
+module.exports = toFunction
