@@ -2,7 +2,7 @@ f = require './to-function'
 cherry = require './cherry'
 
 module.exports =
-  noop: ->
+  noop: f()
 
   compose: (a, b) ->
     a = f a
