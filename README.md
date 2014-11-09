@@ -16,13 +16,13 @@ The following things are coerced into functions by `effing.js`:
 
 - `null` becomes a no-op function
 - `undefined` becomes a no-op function
-- `[fn, args...]` returns a partially applied function
-- `[context, method, args...]` returns a partially applied function with a bound context
-- `[context, 'methodName', args...]` looks up the function on the context and returns it bound to the context with partially applied arguments
+- `[fn, args...]` becomes a partially applied function
+- `[context, method, args...]` becomes a partially applied function with a bound context
+- `[context, 'methodName', args...]` becomes a partially applied function with a bound context by looking up the specified key on the context
 
-Anywhere effing.js expects a function argument, it will be happy with a functionoid instead.
+Anywhere `effing.js` expects a function argument, it will be happy with a functionoid instead.
 
-The `[context, ...]` functionoids don't allow `Function`s to be used as contexts. `effing.js` can't read your mind.
+Note that the `[context, ...]` functionoids don't allow `Function`s to be used as contexts. `effing.js` can't read your mind.
 
 # Functionoid conversion
 
