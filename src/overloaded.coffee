@@ -1,4 +1,4 @@
-f = require './functionoid'
+f = require './to-function'
 
 biggestSmallerThanOrEqualTo = (list, target) ->
   smaller = list.filter (x) -> x <= target

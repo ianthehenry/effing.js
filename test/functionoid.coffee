@@ -1,4 +1,4 @@
-f = require 'effing/functionoid'
+f = require 'effing/to-function'
 { assert } = require 'chai'
 
 describe "toFunction", ->

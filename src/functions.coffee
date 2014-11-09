@@ -1,4 +1,4 @@
-f = require './functionoid'
+f = require './to-function'
 
 curried = (fn, length) ->
   if !length?
