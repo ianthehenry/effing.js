@@ -4,6 +4,9 @@ for module in ['math', 'logic', 'objects', 'other', 'relations', 'functions']
   for own key, value of require "./#{module}"
     f[key] = value
 
+f.overloaded = require './overloaded'
+f.curried = require './curried'
+
 aliases =
   sub: 'subtract'
   mult: 'multiply'
@@ -21,7 +24,5 @@ aliases =
 
 for own newName, oldName of aliases
   f[newName] = f[oldName]
-
-f.overloaded = require './overloaded'
 
 module.exports = f
