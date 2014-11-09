@@ -19,9 +19,6 @@ aliases =
   comp: 'compose'
   dot: 'get'
 
-  is: 'eq'
-  isnt: 'neq'
-
 for own newName, oldName of aliases
   f[newName] = f[oldName]
 
