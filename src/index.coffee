@@ -24,4 +24,6 @@ aliases =
 for own newName, oldName of aliases
   f[newName] = f[oldName]
 
+f.overloaded = require './overloaded'
+
 module.exports = f
