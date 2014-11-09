@@ -1,4 +1,6 @@
-module.exports =
+operators = require './binary-operators'
+
+module.exports = operators
   gt: (a, b) -> a > b
   gte: (a, b) -> a >= b
   lt: (a, b) -> a < b

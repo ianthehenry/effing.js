@@ -26,6 +26,58 @@ When called with one argument, it follows the rules above. When called with no a
 
 So `f(fn, arg)` produces a partially applied function, for example, as if you had called `f([fn, arg])`.
 
+# Operators
+
+`effing.js` creates functions for many operators in JavaScript.
+
+## Logical operators
+
+operator | name
+---------|-----
+`&&`     | `and`
+`||`     | `or`
+`!`      | `not`
+
+## Comparison operators
+
+operator | name
+---------|-----
+`<`      | `lt`
+`>`      | `gt`
+`<=`     | `lte`
+`>=`     | `gte`
+`===`    | `eq`
+`!==`    | `neq`
+
+## Numeric operators
+
+operator | name        | alias
+---------|-------------|------
+`+`      | `add`       |
+`-`      | `subtract`  | `sub`
+`*`      | `multiply`  | `mult`
+`/`      | `divide`    | `div`
+`%`      | `remainder` | `rem`
+`-`      | `negate`    | `neg`
+
+`effing.js` also has some numeric operators that JavaScript doesn't have:
+
+name        | alias  | description
+------------|--------|------------
+`modulo`    | `mod`  | Like JavaScript's remainder operator, but will never produce a negative value.
+`intDivide` | `idiv` | Floor division.
+
+So you can write `f.add(10, 5)`. But you proabably wouldn't write that! You're far more likely to write something like this:
+
+    [1, 2, 3, 4].reduce f.add
+
+Or like this:
+
+    [1, 2, 3, 4, 5].filter f.lt(3)
+
+But how does that work?
+
+# Partially applied binary operators
 
 In Haskell you can say:
 
@@ -35,10 +87,4 @@ In f'ing JavaScript, you have to say:
 
     var isMinor = f.lt(18);
 
-This is important: the relational operators all curry backwards. This means that `f.lt(foo)` is the same as `function(x) { return x < foo; }`, not `function(x) { foo < x; }`.
-
-This *tends* to be a lot more useful, and hopefully is expected.
-
-    var isEven = f.comp(f.eq(0), f.mod(2));
-
-This isn't implemented even a little bit yet.
+When you invoke any of the binary operator functions with a single argument, it will alaways fill in the *right side* of the operator. To fill in the left argument, you can use normal functionoid partial application: `f(f.lt, 18)`.

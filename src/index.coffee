@@ -8,8 +8,6 @@ aliases =
   sub: 'subtract'
   mult: 'multiply'
   div: 'divide'
-  intDivide: 'divideInt'
-  divi: 'divideInt'
   idiv: 'divideInt'
   mod: 'modulo'
   neg: 'negate'
