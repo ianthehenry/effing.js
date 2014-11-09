@@ -1,4 +1,5 @@
 f = require './to-function'
+cherry = require './cherry'
 
 module.exports =
   noop: ->
@@ -30,25 +31,6 @@ module.exports =
   const: (val) -> -> val
 
   once: (fn, errorMessage = "Function called more than once!") ->
-    fn = f fn
-    called = false
-    return ->
-      if called
-        throw new Error(errorMessage)
-      called = true
-      fn.apply(this, arguments)
-
-  time: ({first, later, beforeBoth, afterBoth, both}) ->
-    first = f first
-    later = f later
-    beforeBoth = f beforeBoth
-    afterBoth = f (afterBoth ? both)
-    isFirst = true
-    return ->
-      beforeBoth.apply(this, arguments)
-      if isFirst
-        first.apply(this, arguments)
-      else
-        isFirst = true
-        later.apply(this, arguments)
-      afterBoth.apply(this, arguments)
+    cherry
+      first: fn
+      later: -> throw new Error errorMessage

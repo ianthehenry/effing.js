@@ -4,8 +4,8 @@ for module in ['math', 'logic', 'objects', 'other', 'relations', 'functions']
   for own key, value of require "./#{module}"
     f[key] = value
 
-f.overloaded = require './overloaded'
-f.curried = require './curried'
+for name in ['overloaded', 'curried', 'cherry']
+  f[name] = require "./#{name}"
 
 aliases =
   sub: 'subtract'
