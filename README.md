@@ -4,6 +4,12 @@
 
 Some handy function functions for JavaScript, minus the docs and examples and such.
 
+- easy partial application: `f(func, arg)`
+- easy function binding: `f(obj, method)`
+- easy both at the same time: `f(obj, method, arg)`
+- function equivalents for operators: `[1, 2, 3].reduce(f.add)`
+- partial application for operators: `[-3, 4, 2].filter(f.gt(0))`
+
 # Functionoids
 
 The following things are coerced into functions by `effing.js`:
@@ -27,8 +33,6 @@ When called with one argument, it follows the rules above. When called with no a
 So `f(fn, arg)` produces a partially applied function, for example, as if you had called `f([fn, arg])`.
 
 # Operators
-
-`effing.js` creates functions for many operators in JavaScript.
 
 ## Logical operators
 
@@ -67,17 +71,7 @@ name        | alias  | description
 `modulo`    | `mod`  | Like JavaScript's remainder operator, but will never produce a negative value.
 `intDivide` | `idiv` | Floor division.
 
-So you can write `f.add(10, 5)`. But you proabably wouldn't write that! You're far more likely to write something like this:
-
-    [1, 2, 3, 4].reduce f.add
-
-Or like this:
-
-    [1, 2, 3, 4, 5].filter f.lt(3)
-
-But how does that work?
-
-# Partially applied binary operators
+## Partial application for binary operators
 
 In Haskell you can say:
 
