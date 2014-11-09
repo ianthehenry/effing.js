@@ -1,3 +1,5 @@
+f = require './functionoid'
+
 biggestSmallerThanOrEqualTo = (list, target) ->
   smaller = list.filter (x) -> x <= target
   if smaller.length == 0
@@ -12,7 +14,7 @@ module.exports = (originalMap) ->
     num = Number key
     if key == '' || isNaN num
       throw new Error "non-numeric key #{key}"
-    map[num] = val
+    map[num] = f val
     num
   if nums.length == 0
     throw new Error "you must pass at least one overload!"
