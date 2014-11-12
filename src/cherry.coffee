@@ -6,14 +6,14 @@ seq = (context, args, fns...) ->
     val = fn.apply(context, args)
   return val
 
-module.exports = ({ first, later, beforeBoth, afterBoth, both }) ->
+module.exports = ({ first, after, beforeBoth, afterBoth, both }) ->
   afterBoth = afterBoth ? both
 
   # this is goofy, but necessary to ensure the return value is good
   if first?
     first = f first
-  if later?
-    later = f later
+  if after?
+    after = f after
   if beforeBoth?
     beforeBoth = f beforeBoth
   if afterBoth?
@@ -23,5 +23,5 @@ module.exports = ({ first, later, beforeBoth, afterBoth, both }) ->
   return ->
     seq this, arguments,
       beforeBoth
-      if isFirst then isFirst = false; first else later
+      if isFirst then isFirst = false; first else after
       afterBoth

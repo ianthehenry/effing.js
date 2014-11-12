@@ -2,10 +2,10 @@ cherry = require 'effing/cherry'
 { assert } = require 'chai'
 
 describe "cherry", ->
-  it "returns first or later when there's no both", ->
+  it "returns first or after when there's no both", ->
     fn = cherry
       first: -> 10
-      later: -> 20
+      after: -> 20
     assert fn() == 10
     assert fn() == 20
     assert fn() == 20
@@ -13,7 +13,7 @@ describe "cherry", ->
   it "returns both when it exists", ->
     fn = cherry
       first: -> 10
-      later: -> 20
+      after: -> 20
       both: -> 30
     assert fn() == 30
     assert fn() == 30
@@ -34,9 +34,9 @@ describe "cherry", ->
     fn()
     assert x == 1
 
-  it "only runs the later argument after the first invocation", ->
+  it "only runs the after argument after the first invocation", ->
     x = 0
-    fn = cherry later: -> x++
+    fn = cherry after: -> x++
     fn()
     assert x == 0
     fn()
@@ -50,7 +50,7 @@ describe "cherry", ->
 
     fn = cherry
       first: -> @foo + 1
-      later: -> @foo + 2
+      after: -> @foo + 2
 
     assert fn.call(obj) == 11
     assert fn.call(obj) == 12
@@ -64,7 +64,7 @@ describe "cherry", ->
 
     fn = cherry
       first: [stranger, (-> @foo + 1)]
-      later: -> @foo + 2
+      after: -> @foo + 2
 
     assert fn.call(obj) == 31
     assert fn.call(obj) == 12

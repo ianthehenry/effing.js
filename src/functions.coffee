@@ -40,4 +40,4 @@ module.exports =
   once: (fn, errorMessage = "Function called more than once!") ->
     cherry
       first: fn
-      later: -> throw new Error errorMessage
+      after: -> throw new Error errorMessage
