@@ -4,6 +4,13 @@ cherry = require './cherry'
 module.exports =
   noop: f()
 
+  concat: (fns...) ->
+    return ->
+      val = undefined
+      for fn in fns
+        val = f(fn).apply(this, arguments)
+      return val
+
   compose: (a, b) ->
     a = f a
     b = f b
