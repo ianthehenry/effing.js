@@ -1,6 +1,6 @@
 f = require './to-function'
 
-for module in ['math', 'logic', 'objects', 'other', 'relations', 'functions']
+for module in ['math', 'logic', 'objects', 'relations', 'functions']
   for own key, value of require "./#{module}"
     f[key] = value
 
