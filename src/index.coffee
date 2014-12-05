@@ -1,11 +1,23 @@
 f = require './to-function'
 
-for file in ['math', 'logic', 'objects', 'relations', 'functions']
-  for own key, value of require "./#{file}"
+# Since Browserify does static analysis to determine file concatenation
+# order, we can't do the obvious thing require these in a loop -- we
+# have to suck it up and write everything out.
+objRequires = [
+  require './math' 
+  require './logic'
+  require './objects'
+  require './relations'
+  require './functions'
+]
+
+for obj in objRequires
+  for own key, value of obj
     f[key] = value
 
-for name in ['overloaded', 'curried', 'prime']
-  f[name] = require "./#{name}"
+f.overloaded = require './overloaded'
+f.curried = require './curried'
+f.prime = require './prime'
 
 aliases =
   sub: 'subtract'
