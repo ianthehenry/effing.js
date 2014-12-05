@@ -1,11 +1,11 @@
-f = require './to-function'
+f = require './to-function.coffee'
 
 for file in ['math', 'logic', 'objects', 'relations', 'functions']
-  for own key, value of require "./#{file}"
+  for own key, value of require "./#{file}.coffee"
     f[key] = value
 
 for name in ['overloaded', 'curried', 'prime']
-  f[name] = require "./#{name}"
+  f[name] = require "./#{name}.coffee"
 
 aliases =
   sub: 'subtract'
