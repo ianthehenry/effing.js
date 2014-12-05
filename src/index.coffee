@@ -4,7 +4,7 @@ for file in ['math', 'logic', 'objects', 'relations', 'functions']
   for own key, value of require "./#{file}"
     f[key] = value
 
-for name in ['overloaded', 'curried', 'cherry']
+for name in ['overloaded', 'curried', 'prime']
   f[name] = require "./#{name}"
 
 aliases =

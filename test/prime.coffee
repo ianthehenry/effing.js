@@ -1,9 +1,9 @@
-cherry = require 'effing/cherry'
+prime = require 'effing/prime'
 { assert } = require 'chai'
 
-describe "cherry", ->
+describe "prime", ->
   it "returns first or after when there's no both", ->
-    fn = cherry
+    fn = prime
       first: -> 10
       after: -> 20
     assert fn() == 10
@@ -11,7 +11,7 @@ describe "cherry", ->
     assert fn() == 20
 
   it "returns both when it exists", ->
-    fn = cherry
+    fn = prime
       first: -> 10
       after: -> 20
       both: -> 30
@@ -20,7 +20,7 @@ describe "cherry", ->
     assert fn() == 30
 
   it "returns beforeBoth if it's the only thing specified", ->
-    fn = cherry
+    fn = prime
       beforeBoth: -> 5
     assert fn() == 5
     assert fn() == 5
@@ -28,7 +28,7 @@ describe "cherry", ->
 
   it "only runs the first argument once", ->
     x = 0
-    fn = cherry first: -> x++
+    fn = prime first: -> x++
     fn()
     fn()
     fn()
@@ -36,7 +36,7 @@ describe "cherry", ->
 
   it "only runs the after argument after the first invocation", ->
     x = 0
-    fn = cherry after: -> x++
+    fn = prime after: -> x++
     fn()
     assert x == 0
     fn()
@@ -48,7 +48,7 @@ describe "cherry", ->
     obj =
       foo: 10
 
-    fn = cherry
+    fn = prime
       first: -> @foo + 1
       after: -> @foo + 2
 
@@ -62,7 +62,7 @@ describe "cherry", ->
     stranger =
       foo: 30
 
-    fn = cherry
+    fn = prime
       first: [stranger, (-> @foo + 1)]
       after: -> @foo + 2
 

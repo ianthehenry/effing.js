@@ -1,5 +1,5 @@
 f = require './to-function'
-cherry = require './cherry'
+prime = require './prime'
 
 module.exports =
   noop: f()
@@ -38,6 +38,6 @@ module.exports =
   const: (val) -> -> val
 
   once: (fn, errorMessage = "Function called more than once!") ->
-    cherry
+    prime
       first: fn
       after: -> throw new Error errorMessage
