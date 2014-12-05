@@ -54,3 +54,11 @@ describe "objects.method", ->
 
     ageGetter = objects.method('getAge')
     assert ageGetter(person) == 18
+
+  it "forwards arguments after being partially applied", ->
+    person =
+      age: 18
+      addAge: (x) -> @age + x
+
+    ageAdder = objects.method('addAge')
+    assert ageAdder(person, 10) == 28
