@@ -81,4 +81,4 @@ In f'ing JavaScript, you have to say:
 
     var isMinor = f.lt(18);
 
-When you invoke any of the binary operator functions with a single argument, it will alaways fill in the *right side* of the operator. To fill in the left argument, you can use normal functionoid partial application: `f(f.lt, 18)`.
+When you invoke any of the binary operator functions with a single argument, it will always fill in the *right side* of the operator. To fill in the left argument, you can use normal functionoid partial application: `f(f.lt, 18)`.
