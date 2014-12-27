@@ -38,12 +38,3 @@ describe "managed", ->
     assert x == 2
     second()
     assert x == 3
-
-  it "accepts functionoids", ->
-    x = 0
-    addToX = (a) -> x += a
-    managedFn = managed([addToX, 1])
-    first = managedFn.lease()
-    assert x == 0
-    first()
-    assert x == 1

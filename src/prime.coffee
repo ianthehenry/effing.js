@@ -9,16 +9,6 @@ seq = (context, args, fns...) ->
 module.exports = ({ first, after, beforeBoth, afterBoth, both }) ->
   afterBoth = afterBoth ? both
 
-  # this is goofy, but necessary to ensure the return value is good
-  if first?
-    first = f first
-  if after?
-    after = f after
-  if beforeBoth?
-    beforeBoth = f beforeBoth
-  if afterBoth?
-    afterBoth = f afterBoth
-
   isFirst = true
   return ->
     seq this, arguments,

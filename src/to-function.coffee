@@ -6,23 +6,18 @@ isArray = Array.isArray ? (x) ->
 isFunction = (x) -> typeof x == 'function'
 isString = (x) -> typeof x == 'string'
 
-toFunction = (functionoid) ->
-  if arguments.length > 1
-    [args...] = arguments
-    return toFunction(args)
-
-  if !functionoid?
-    return noop
-  if isFunction functionoid
-    return functionoid
-  if !isArray(functionoid)
-    throw new Error "Input is not convertible to a function"
+toFunction = (functionoid...) ->
   if functionoid.length == 0
-    throw new Error "Empty arrays are not functionoids"
+    return noop
+  if !functionoid[0]?
+    return noop
 
   if typeof functionoid[0] == 'function'
     [fn, args...] = functionoid
-    return -> fn.call(this, args..., arguments...)
+    if args.length == 0
+      return fn
+    else
+      return -> fn.call(this, args..., arguments...)
 
   [target, method, args...] = functionoid
   fn = if isString method

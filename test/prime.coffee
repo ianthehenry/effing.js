@@ -54,17 +54,3 @@ describe "prime", ->
 
     assert fn.call(obj) == 11
     assert fn.call(obj) == 12
-
-  it "allows functionoids", ->
-    obj =
-      foo: 10
-
-    stranger =
-      foo: 30
-
-    fn = prime
-      first: [stranger, (-> @foo + 1)]
-      after: -> @foo + 2
-
-    assert fn.call(obj) == 31
-    assert fn.call(obj) == 12

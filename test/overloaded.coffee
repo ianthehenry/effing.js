@@ -41,9 +41,3 @@ describe "overloaded", ->
       6: -> 6
     assert fn('one', 'two', 'three') == 1
     assert fn('one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight') == 6
-
-  it "allows functionoids", ->
-    addTen = (x) -> x + 10
-    fn = overloaded
-      0: [addTen, 20]
-    assert fn() == 30

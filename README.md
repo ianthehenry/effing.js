@@ -10,27 +10,16 @@ Some handy function functions for JavaScript, minus the docs and examples and su
 - function equivalents for operators: `[1, 2, 3].reduce(f.add)`
 - partial application for operators: `[-3, 4, 2].filter(f.gt(0))`
 
-# Functionoids
+# Function conversion
 
-The following things are coerced into functions by `effing.js`:
+`effing.js` exposes a function, generally referred to as `f`, which performs the following transformations:
 
-- `null` becomes a no-op function
-- `undefined` becomes a no-op function
-- `[fn, args...]` becomes a partially applied function
-- `[context, method, args...]` becomes a partially applied function with a bound context
-- `[context, 'methodName', args...]` becomes a partially applied function with a bound context by looking up the specified key on the context
+- `f()`, `f(null)`, and `f(undefined)` returns a no-op function
+- `f(fn, args...)` returns a partially applied function
+- `f(context, method, args...)` returns a partially applied function with a bound context
+- `f(context, 'methodName', args...)` returns a partially applied function with a bound context by looking up the specified key on the context
 
-Anywhere `effing.js` expects a function argument, it will be happy with a functionoid instead.
-
-Note that the `[context, ...]` functionoids don't allow `Function`s to be used as contexts. `effing.js` can't read your mind.
-
-# Functionoid conversion
-
-`effing.js` exports a function, usually called `f`, that will convert functionoids into normal functions.
-
-When called with one argument, it follows the rules above. When called with no arguments, it returns a no-op function. When called with more than one argument, it behaves as if it were invoked with the arguments in a list.
-
-So `f(fn, arg)` produces a partially applied function, for example, as if you had called `f([fn, arg])`.
+Note that the context-binding forms do not allow `Function`s to be passed as the context. `effing.js` can't read your mind.
 
 # Operators
 

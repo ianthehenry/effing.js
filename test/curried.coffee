@@ -10,9 +10,6 @@ describe "curried", ->
     fn = (a, b, c) -> 10
     assert curried(fn, 4)(1)(2, 3)(5) == 10
 
-  it "requires an explicit length when passed a functionoid", ->
-    assert.throws -> curried([Math.max, 2])
-
   it "invokes the underlying function when it reaches the right number of arguments", ->
     assert curried(Math.max, 2)(1, 2) == 2
     assert curried(Math.max, 2)(1)(2) == 2
