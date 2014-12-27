@@ -21,7 +21,9 @@ Some handy function functions for JavaScript, minus the docs and examples and su
 
 Note that the context-binding forms do not allow `Function`s to be passed as the context. `effing.js` can't read your mind.
 
-# Operators
+# Lifted Operators
+
+`effing.js` exposes function equivalents of many of JavaScript's operators, for ease of composition.
 
 ## Logical operators
 
@@ -62,15 +64,21 @@ name        | alias  | description
 
 ## Partial application for binary operators
 
-In Haskell you can say:
+Haskell has a very nice syntax for partial application of binary operators:
 
-    isMinor = (< 18)
+```haskell
+isMinor = (< 18)
+```
 
-In f'ing JavaScript, you have to say:
+`effing.js` exposes something similar in its lifted operators:
 
-    var isMinor = f.lt(18);
+```javascript
+var isMinor = f.lt(18);
+```
 
 When you invoke any of the binary operator functions with a single argument, it will always fill in the *right side* of the operator. To fill in the left argument, you can use normal functionoid partial application:
 
-    var probabilityNot = f(f.sub, 1);
-    probabilityNot(0.75) # 0.25
+```javascript
+var probabilityNot = f(f.sub, 1);
+probabilityNot(0.75) # 0.25
+```
