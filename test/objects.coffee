@@ -33,27 +33,19 @@ describe "objects.set", ->
 
 describe "objects.method", ->
   it "invokes a method on an object", ->
-    assert objects.method('foo', { foo: -> 5 }) == 5
+    assert objects.method('foo')({ foo: -> 5 }) == 5
 
   it "preserves the context", ->
     person =
       name: "John"
       getName: -> @name
-    assert objects.method('getName', person) == "John"
+    assert objects.method('getName')(person) == "John"
 
-  it "forwards arguments", ->
+  it "forwards any supplied arguments", ->
     person =
       age: 18
       ageInTheFuture: (years) -> @age + years
-    assert objects.method('ageInTheFuture', person, 10) == 28
-
-  it "allows partial application of the method name", ->
-    person =
-      age: 18
-      getAge: -> @age
-
-    ageGetter = objects.method('getAge')
-    assert ageGetter(person) == 18
+    assert objects.method('ageInTheFuture', 10)(person) == 28
 
   it "forwards arguments after being partially applied", ->
     person =
