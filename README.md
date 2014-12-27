@@ -14,7 +14,7 @@ Some handy function functions for JavaScript, minus the docs and examples and su
 
 `effing.js` exposes a function, generally referred to as `f`, which performs the following transformations:
 
-- `f()`, `f(null)`, and `f(undefined)` returns a no-op function
+- `f()`, `f(null)`, and `f(undefined)` return a no-op function
 - `f(fn, args...)` returns a partially applied function
 - `f(context, method, args...)` returns a partially applied function with a bound context
 - `f(context, 'methodName', args...)` returns a partially applied function with a bound context by looking up the specified key on the context
@@ -70,4 +70,7 @@ In f'ing JavaScript, you have to say:
 
     var isMinor = f.lt(18);
 
-When you invoke any of the binary operator functions with a single argument, it will always fill in the *right side* of the operator. To fill in the left argument, you can use normal functionoid partial application: `f(f.lt, 18)`.
+When you invoke any of the binary operator functions with a single argument, it will always fill in the *right side* of the operator. To fill in the left argument, you can use normal functionoid partial application:
+
+    probabilityNot = f(f.sub, 1);
+    probabilityNot(0.75) # 0.25
