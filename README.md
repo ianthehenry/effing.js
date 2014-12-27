@@ -72,5 +72,5 @@ In f'ing JavaScript, you have to say:
 
 When you invoke any of the binary operator functions with a single argument, it will always fill in the *right side* of the operator. To fill in the left argument, you can use normal functionoid partial application:
 
-    probabilityNot = f(f.sub, 1);
+    var probabilityNot = f(f.sub, 1);
     probabilityNot(0.75) # 0.25
