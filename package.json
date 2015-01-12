@@ -3,6 +3,7 @@
   "description": "Function functions.",
   "version": "0.0.1",
   "author": "Ian Henry <ianthehenry@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "build-browser-min": "mkdir browser; browserify src/index.coffee --extension .coffee --standalone Effing -t coffeeify -t uglifyify -o browser/effing.min.js",
     "build-browser":     "mkdir browser; browserify src/index.coffee --extension .coffee --standalone Effing -t coffeeify -o browser/effing.js",
