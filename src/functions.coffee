@@ -15,10 +15,6 @@ module.exports =
     return ->
       a.call this, b.apply(this, arguments)
 
-  swap: (fn) ->
-    return (a, b) ->
-      fn.call(this, b, a)
-
   unpack: (fn) ->
     return (arg) -> fn.apply(this, arg)
 
