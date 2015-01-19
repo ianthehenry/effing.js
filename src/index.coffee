@@ -4,7 +4,7 @@ f = require './to-function'
 # order, we can't do the obvious thing require these in a loop -- we
 # have to suck it up and write everything out.
 objRequires = [
-  require './math' 
+  require './math'
   require './logic'
   require './objects'
   require './relations'
@@ -23,7 +23,7 @@ aliases =
   sub: 'subtract'
   mult: 'multiply'
   div: 'divide'
-  idiv: 'divideInt'
+  idiv: 'intDivide'
   mod: 'modulo'
   neg: 'negate'
   rem: 'remainder'
