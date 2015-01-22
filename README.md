@@ -105,11 +105,11 @@ second(); // but second is still valid, so
 
 The intention of `managed` is to ensure that callbacks don't fire in the wrong order, when doing something like search-as-you-type loading.
 
-### `curried (Function, Number?) -> Function`
+### `curried :: (Number?, Function) -> Function`
 
 This function returns a curried version of another function, which is a function that will continuously return partially applied versions of itself until you supply it "enough" arguments. See [the tests](https://github.com/ianthehenry/effing/blob/master/test/curried.coffee).
 
-You can optionally pass it the number of arguments to expect. If you omit this argument, it will use [`fn.length`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length) to figure out the expected number of arguments. It is recommended that you specify this explicitly, especially if you are not passing in an anonymous function.
+You can optionally pass it the number of arguments to expect. If you omit this argument, it will use [`fn.length`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length) to figure out the expected number of arguments. It is recommended that you always specify this explicitly, *especially* if you are not passing in an anonymous function.
 
 ### `prime`
 

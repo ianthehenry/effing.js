@@ -1,9 +1,12 @@
 f = require './to-function'
 
-curried = (fn, length = fn.length) ->
+curried = (length, fn) ->
+  if typeof length == 'function'
+    fn = length
+    length = fn.length
   return ->
     if arguments.length < length
-      curried f(fn, arguments...), length - arguments.length
+      curried length - arguments.length, f(fn, arguments...)
     else
       fn.apply this, arguments
 
