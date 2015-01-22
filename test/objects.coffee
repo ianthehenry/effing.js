@@ -9,6 +9,18 @@ describe "objects.get", ->
     getName = objects.get 'name'
     assert getName(name: "Mary") == "Mary"
 
+describe "objects.lookup", ->
+  it "looks up a key on an object", ->
+    assert objects.lookup({ name: "John" }, 'name') == "John"
+
+  it "can be partially applied", ->
+    mary =
+      name: "Mary"
+      age: 25
+    investigateMary = objects.lookup mary
+    assert investigateMary('name') == "Mary"
+    assert investigateMary('age') == 25
+
 describe "objects.set", ->
   it "sets a key on an object", ->
     person = {}

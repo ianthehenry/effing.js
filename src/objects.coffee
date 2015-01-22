@@ -2,6 +2,7 @@ curried = require './curried'
 
 module.exports =
   get: curried (key, obj) -> obj[key]
+  lookup: curried (obj, key) -> obj[key]
   set: curried (key, obj, val) -> obj[key] = val
   method: (methodName, args...) -> (obj, moreArgs...) ->
     if moreArgs.length == 0

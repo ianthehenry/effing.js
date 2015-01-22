@@ -138,6 +138,16 @@ The inner functions receive all the arguments passed to the outer functions and 
 
 `get` is a curried function that lifts expressions of the form `obj[key]`. It can be invoked directly, like `f.get('foo', { foo: 123 })`, but it is more useful when inokved with one argument: `people.map(f.get('name'))`, where it will return a "function that gets."
 
+### `lookup :: Object -> String -> Function`
+
+The same as `get` with the argument order reversed. Can be used to create "lookup functions," so we could write [Mustache.js's `escapeHtml`](https://github.com/janl/mustache.js/blob/2ba7481d41e356869dc2db695ccc4a0cf3ce38cd/mustache.js#L52) function as:
+
+```javascript
+var escapeHtml = function (string) {
+    return String(string).replace(/[&<>"'\/]/g, f.lookup(entityMap));
+}
+```
+
 ### `set :: String -> Object -> Any -> Function`
 
 `set` is a curried function that lifts expressions of the form `obj[key] = val`.
