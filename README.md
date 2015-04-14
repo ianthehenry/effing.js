@@ -31,6 +31,10 @@ Note that the context-binding forms do not allow `Function`s to be passed as the
 
 # Helper functions
 
+### `id :: Any -> Any`
+
+The identity function.
+
 ### `compose :: (Function, Function) -> Function`
 
 Function composition: `f.compose(a, b) = a ∘ b`.
@@ -59,6 +63,24 @@ Given a function, returns a function that will throw an error if it's invoked mo
 ### `concat :: Function... -> Function`
 
 Given a list of functions, returns a function that invokes each of them in order with the same arguments and context.
+
+### `choke :: (Number, Function) -> Function`
+
+Given a number and a function, returns a function that will call the provided function with, at maximum, the specified number of arguments.
+
+For example:
+
+    f.choke(1, console.log)("hello", "world")
+
+Will only print out `hello`, because it is "choked" to a single argument.
+
+This is useful for times when JavaScript passes additional arguments that you don't want. For example, you can use it to avoid a classic JS gotcha:
+
+    var nums = ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100'];
+    nums.map(parseInt) // [10, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, 81]
+    nums.map(f.choke(parseInt, 1)) // [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+
+Note that you should still explicitly specify the radix, to avoid [the *other* `parseInt` gotcha](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#Octal_interpretations_with_no_radix).
 
 ### `negate :: Function -> Function`
 

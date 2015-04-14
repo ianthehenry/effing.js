@@ -21,3 +21,15 @@ describe "concat", ->
     six = -> 6
     seven = -> 7
     assert functions.concat(five, six, seven)() == 7
+
+describe "choke", ->
+  it "calls the inner function", ->
+    sum = (a = 0, b = 0, c = 0) -> a + b + c
+
+    assert sum(1, 2, 3) == 6
+    assert functions.choke(2, sum)(1, 2, 3) == 3
+    assert functions.choke(1, sum)(1, 2, 3) == 1
+
+  it "is a maximum", ->
+    sum = (a = 0, b = 0, c = 0) -> a + b + c
+    assert functions.choke(2, sum)(1) == 1

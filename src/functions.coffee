@@ -4,6 +4,12 @@ prime = require './prime'
 module.exports =
   noop: f()
 
+  id: (a) -> a
+
+  choke: (length, fn) ->
+    (args...) ->
+      fn.apply(this, args.slice(0, length))
+
   concat: (fns...) ->
     return ->
       val = undefined
