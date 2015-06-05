@@ -33,3 +33,26 @@ describe "choke", ->
   it "is a maximum", ->
     sum = (a = 0, b = 0, c = 0) -> a + b + c
     assert functions.choke(2, sum)(1) == 1
+
+describe "invoke", ->
+  it "calls its argument", ->
+    x = 0
+    poke = -> x = 10
+    functions.invoke(poke)
+    assert.equal x, 10
+
+  it "calls its argument with the rest of its arguments", ->
+    x = 0
+    poke = (nums...) -> nums.forEach (num) -> x += num
+    functions.invoke(poke, 1, 2, 3)
+    assert.equal x, 6
+
+  it "preserves context", ->
+    obj = { x: 0 }
+    poke = (nums...) -> nums.forEach (num) => @x += num
+    functions.invoke.call(obj, poke, 1, 2, 3)
+    assert.equal obj.x, 6
+
+  it "returns the function's return value", ->
+    getTen = -> 10
+    assert.equal functions.invoke(getTen), 10

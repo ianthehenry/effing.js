@@ -1,3 +1,7 @@
+# 2.2.0
+
+- Added `invoke`.
+
 # 2.1.0
 
 - Added `id`.

@@ -24,6 +24,9 @@ module.exports =
   unpack: (fn) ->
     return (arg) -> fn.apply(this, arg)
 
+  invoke: (f, args...) ->
+    f.apply(this, args)
+
   guard: (fn, pred, elseValue) ->
     return ->
       if pred.apply this, arguments

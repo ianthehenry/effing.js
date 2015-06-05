@@ -39,6 +39,22 @@ The identity function.
 
 Function composition: `f.compose(a, b) = a ∘ b`.
 
+### `invoke :: (Function, Any...) -> Function`
+
+A function that lifts function application. Instead of:
+
+```javascript
+[getName, getAddress].map(function(f) { return f(); });
+```
+
+You can write:
+
+```javascript
+[getName, getAddress].map(f.invoke)
+```
+
+It's like `f.method('call')`, except that it preserves the context it's invoked with.
+
 ### `unpack :: Function -> Function`
 
 Given a function, `unpack` returns a function that expects an array and invokes the inner function with the array expanded into arguments, using `apply`. The context is preserved.
