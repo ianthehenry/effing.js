@@ -9,6 +9,7 @@
     "build-browser":     "mkdir browser; browserify src/index.coffee --extension .coffee --standalone Effing -t coffeeify -o browser/effing.js",
     "build-npm": "coffee -b -c -o lib/ --no-header src/",
     "build": "npm run build-browser && npm run build-browser-min && npm run build-npm",
+    "prepublish": "npm run build-npm",
     "test": "mocha"
   },
   "devDependencies": {
