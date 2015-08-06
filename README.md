@@ -80,9 +80,9 @@ Given a function, returns a function that will throw an error if it's invoked mo
 
 Given a list of functions, returns a function that invokes each of them in order with the same arguments and context.
 
-### `choke :: (Number, Function) -> Function`
+### `choke :: (Number, Functionlike...) -> Function`
 
-Given a number and a function, returns a function that will call the provided function with, at maximum, the specified number of arguments.
+Given a number and arguments that can be converted into a function, `choke` returns a function that will call the provided function with, at maximum, the specified number of arguments.
 
 For example:
 
@@ -94,9 +94,18 @@ This is useful for times when JavaScript passes additional arguments that you do
 
     var nums = ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100'];
     nums.map(parseInt) // [10, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, 81]
-    nums.map(f.choke(parseInt, 1)) // [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    nums.map(f.choke(1, parseInt)) // [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
 Note that you should still explicitly specify the radix, to avoid [the *other* `parseInt` gotcha](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#Octal_interpretations_with_no_radix).
+
+All arguments after the first argument will be passed to the "function conversion" function `f`. This means you can choke and bind/partially apply in a single invocation of `choke`:
+
+    var nums = ['1a', '2b', '3c'];
+    nums.map(f.choke(1, parseInt, 16)) // [26, 43, 60]
+
+When using the partially-applying function conversion form like above, the first argument to `choke` specifies the number of *additional* arguments the returned function is allowed to receive. Thus `f.choke(1, a, b, c)` is always the same as `f.choke(1, f(a, b, c))`.
+
+(These are silly examples, as `nums.map(f(parseInt, 16))` is sufficient in this particular case.)
 
 ### `negate :: Function -> Function`
 

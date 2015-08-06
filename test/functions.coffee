@@ -34,6 +34,16 @@ describe "choke", ->
     sum = (a = 0, b = 0, c = 0) -> a + b + c
     assert functions.choke(2, sum)(1) == 1
 
+  it "performs function conversion", ->
+    statefulSum = (a = 0, b = 0, c = 0) -> a + b + c + @x
+
+    assert functions.choke(1, { x: 10 }, statefulSum)(1) == 11
+
+  it "specifies the number of additional arguments when partially applying", ->
+    statefulSum = (a = 0, b = 0, c = 0) -> a + b + c + @x
+
+    assert functions.choke(1, { x: 10 }, statefulSum, 2)(1) == 13
+
 describe "invoke", ->
   it "calls its argument", ->
     x = 0

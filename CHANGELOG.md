@@ -1,3 +1,7 @@
+# master
+
+- Overloaded `choke` to support function-like arguments.
+
 # 2.2.0
 
 - Added `invoke`.

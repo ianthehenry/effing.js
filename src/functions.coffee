@@ -6,7 +6,8 @@ module.exports =
 
   id: (a) -> a
 
-  choke: (length, fn) ->
+  choke: (length, fnArgs...) ->
+    fn = f(fnArgs...)
     (args...) ->
       fn.apply(this, args.slice(0, length))
 
