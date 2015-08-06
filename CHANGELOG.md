@@ -1,4 +1,4 @@
-# master
+# 2.3.0
 
 - Overloaded `choke` to support function-like arguments.
 
