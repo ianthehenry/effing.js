@@ -225,7 +225,7 @@ You invoke it with the name of a "method" and an optional list of arguments. It 
 operator | name
 ---------|-----
 `&&`     | `and`
-`||`     | `or`
+`\|\|`   | `or`
 `!`      | `not`
 
 ## Comparison operators
